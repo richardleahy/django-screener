@@ -14,6 +14,7 @@ router.register(r'answerquality', views.AnswerQualityViewSet)
 urlpatterns = [
     url(r'^$', views.index,{'template_name': 'screener/index.html'}, name='index'),
     url(r'^api/', include(router.urls)),
-    # comment in to browse the API if you do not have login functionality http://127.0.0.1:8000/screener/api/
+    # Remove comment to login into the API if you do not have any login functionality
+    # http://127.0.0.1:8000/screener/api/
     #url(r'^api-auth/', include('rest_framework.urls')),
 ]
