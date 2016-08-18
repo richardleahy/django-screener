@@ -11,6 +11,11 @@ Django REST framework
 AngularJS
 Bootstrap
 
+PyPI download
+-------------
+django-screener
+---------------
+
 Important Info
 --------------
 Requires a valid session. Your site must provide its own login functionality to
