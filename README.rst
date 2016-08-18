@@ -50,6 +50,6 @@ Quick start
 
 7. Add some screens.
 
-8. Create some candidates and add them to a screens
+8. Create candidates and add them to screens
 
 9. Start phone screening! 
