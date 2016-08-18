@@ -1,0 +1,62 @@
+<modal-confirm-delete-dialog></modal-confirm-delete-dialog>
+
+<h3 class="page-header">
+    <div class="trunc">Question: {{question.question}}</div>
+</h3>
+
+<div class="alert alert-{{status}}" role="alert">
+    <busy></busy> {{status|uppercase}}<span ng-if="info">:</span> {{info}}
+</div>
+
+<style>
+	textarea.form-control {
+	    resize: none;
+	    height:200px;
+	}
+</style>
+
+<div ng-repeat="e in errors" class="alert alert-danger" role="alert">
+    ERROR: {{e.errorMsg}}
+    <br>STATUS: {{e.status}} - {{e.statusText}}
+    <br>DETAIL: {{e.data.detail}}
+</div>
+
+<div ng-show="status_code!=403">
+	<form ng-submit="editItem()">
+		<div class="form-group">
+			<label class="control-label error" ng-if="question_errors.non_field_errors"><p>{{question_errors.non_field_errors}}</p></label>
+	        <br ng-if="question_errors.non_field_errors">
+			
+			<label class="control-label required">Question</label>
+			
+			<p>
+			    <label class="control-label" ng-class="{'error': question_errors.question}"  
+	                   ng-if="question_errors.question">{{question_errors.question[0]}}</label>
+			    <input class="form-control" type="text" placeholder="Question" name="question_name" 
+			           ng-model="question_name" required  ng-readonly="!edit">
+			</p>
+			<label class="control-label">Reference Answer</label>
+			<p><textarea class="form-control" placeholder="Reference Answer" name="reference_answer" 
+			             ng-model="reference_answer" ng-readonly="!edit"></textarea></p>
+		</div>
+		
+		<label>Category [Ctrl + Click]</label>
+		<p>
+		    <select multiple class="form-control" name="categories" ng-model="categories" ng-readonly="!edit">
+		       <option ng-repeat="c in category_list" value="{{c.category}}" >     
+		           {{c.category}}
+		       </option>
+		    </select>
+		</p>
+		
+		<p>
+		    <button class="btn btn-lg btn-primary glyphicon glyphicon-pencil" ng-click="toggleEdit()" type="button"></button>
+		    <button class="btn btn-lg btn-primary glyphicon glyphicon-save" type="submit" ng-disabled="!edit"></button>
+		    <button class="btn btn-lg btn-primary glyphicon glyphicon-remove" data-toggle="modal" data-target="#confirmDeleteModal" 
+		            ng-click='confirmDataNoIdx(question.pk)' type="button"></button>
+		</p>
+	</form>
+</div>
+
+
+

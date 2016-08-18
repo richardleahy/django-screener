@@ -1,0 +1,98 @@
+<modal-confirm-delete-dialog></modal-confirm-delete-dialog>
+
+<h3 class="page-header">
+    <div class="trunc">Screen: {{screen.name}}</div>
+</h3>
+
+<div class="alert alert-{{status}}" role="alert">
+    <busy></busy> {{status|uppercase}}<span ng-if="info">:</span> {{info}}
+</div>
+
+<div ng-repeat="e in errors" class="alert alert-danger" role="alert">
+    ERROR: {{e.errorMsg}}
+    <br>STATUS: {{e.status}} - {{e.statusText}}
+    <br>DETAIL: {{e.data.detail}}
+</div>
+
+<style>
+	.table-responsive {
+	    max-height: 200px;
+	}
+	.table-responsive{
+	 overflow-y:scroll;
+	}
+</style>
+
+<div ng-show="status_code!=403">
+	<form ng-submit="editItem()">
+		<div class="form-group">
+		     <label class="control-label error" ng-if="screen_errors.non_field_errors"><p>{{screen_errors.non_field_errors}}</p></label>
+	         <br ng-if="screen_errors.non_field_errors">
+		
+			<label class="control-label required">Screen Position</label>
+			
+			<p>
+				<label class="control-label" ng-class="{'error': screen_errors.name}"  
+	                   ng-if="screen_errors.name">{{screen_errors.name[0]}} {{screen_errors.name.name}}</label>
+			    <input class="form-control" type="text" placeholder="Screen position" name="screen.name" ng-model="screen.name" required  
+			           ng-readonly="!edit">
+			</p>
+		</div>
+		
+		<label class="control-label">Add / Remove Questions</label>
+		<p><input class="form-control" type="text" placeholder="Filter by name or category" ng-model="filter"></p>
+		<div class="table-responsive">
+		   <table class="table table-striped">
+		     <thead>
+		       <tr>
+		         <th class="col-sm-1">#</th>
+		         <th class="col-sm-11">Question Name</th>
+		       </tr>
+		     </thead>
+		     <tbody>
+		       <tr ng-repeat="q in questions | filter:filter">
+		         <td class="col-sm-1" ng-class="{'success':selection.indexOf(q.question) > -1}">
+		             <input ng-disabled="!edit" type="checkbox" value="{{q.pk}}" name="selectedQuestions[]" 
+		                    ng-checked="selection.indexOf(q.question) > -1" 
+		                    ng-click="toggleSelection(q.question)">
+		         </td>
+		         <td class="col-sm-11" ng-class="{'success':selection.indexOf(q.question) > -1}">
+		             <a href="#!/questions/{{q.pk}}/" >{{q.question}}</a>
+		         </td>
+		       </tr>
+		     </tbody>
+		   </table>
+		</div>
+		
+		<br />
+		<div class="table-responsive">
+		   <table class="table table-striped">
+		     <thead>
+		       <tr>
+		         <th class="col-sm-7">Candidate Screen</th>
+		         <th class="col-sm-2">Score %</th>
+		         <th class="col-sm-3">Quality Breakdown %</th>
+		       </tr>
+		     </thead>
+		     <tbody>
+		       <tr ng-repeat="c in candidates | filter:filter |orderBy:'-score'">
+		         <td><a href="#!/candidates/{{c.pk}}/screens/{{screen.pk}}" >{{c.first_name}} {{c.surname}}</a></td>
+		         <td>{{c.score}}</td>
+		         <td>{{c.quality}}</td>
+		       </tr>
+		     </tbody>
+		   </table>
+		</div>
+		
+		<br/>
+		<p>
+		    <button class="btn btn-lg btn-primary glyphicon glyphicon-pencil" ng-click="toggleEdit()" type="button"></button>
+		    <button class="btn btn-lg btn-primary glyphicon glyphicon-save" type="submit" ng-disabled="!edit"></button>
+		    <button class="btn btn-lg btn-primary glyphicon glyphicon-remove" data-toggle="modal" data-target="#confirmDeleteModal" 
+		            ng-click='confirmDataNoIdx(screen.pk)' type="button"></button>
+		</p>
+	</form>
+</div>
+
+
+

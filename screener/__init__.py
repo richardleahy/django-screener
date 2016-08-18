@@ -1,0 +1,5 @@
+__title__ = 'Screener'
+__version__ = '0.1.0b1'
+__author__ = 'Richard Leahy'
+__license__ = 'BSD 3-Clause'
+__copyright__ = 'Copyright 2016 Richard Leahy'

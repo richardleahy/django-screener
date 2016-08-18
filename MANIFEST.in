@@ -1,0 +1,4 @@
+include LICENSE
+include README.rst
+recursive-include screener/static *
+recursive-include screener/templates *

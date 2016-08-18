@@ -1,0 +1,62 @@
+<h3 class="page-header">Add Candidate</h3>
+<div class="alert alert-{{status}}" role="alert">
+    <busy></busy> {{status|uppercase}}<span ng-if="info">:</span> {{info}}
+</div>
+
+<div ng-repeat="e in errors" class="alert alert-danger" role="alert">
+    ERROR: {{e.errorMsg}}
+    <br>STATUS: {{e.status}} - {{e.statusText}}
+    <br>DETAIL: {{e.data.detail}}
+</div>
+
+<form ng-submit="addItem()">
+  <div class="form-group">
+    <label class="control-label error" ng-if="candidate_errors.non_field_errors"><p>{{candidate_errors.non_field_errors}}</p></label>
+	<br ng-if="candidate_errors.non_field_errors"><label class="control-label required">First Name</label>
+	
+	<p>
+	    <label class="control-label" ng-class="{'error': candidate_errors.first_name}"  
+	           ng-if="candidate_errors.first_name">{{candidate_errors.first_name[0]}}</label>
+	    <input class="form-control" type="text" placeholder="" name="first_name" ng-model="candidate.first_name" required>
+	</p>
+	
+	<label class="control-label required">Surname</label>
+	<p>
+		<label class="control-label" ng-class="{'error': candidate_errors.surname}"  
+	           ng-if="candidate_errors.surname">{{candidate_errors.surname[0]}}</label>
+	    <input class="form-control" type="text" placeholder="" name="surname" ng-model="candidate.surname" required>
+	</p>
+	
+	<label class="control-label required">Screen</label>
+	<p>
+	    <label class="control-label" ng-class="{'error': candidate_errors.screen}"  
+	           ng-if="candidate_errors.screen">{{candidate_errors.screen[0]}}</label>
+	    <select class="form-control" name="screen" ng-model="candidate.screen.url" required>
+	       <option value=""></option>
+	       <option ng-repeat="s in screen_list" value="{{s.url}}">     
+	           {{s.name}}
+	       </option>
+	    </select>
+	</p>
+	
+	<label class="control-label">Email</label>
+	<p>
+	    <label class="control-label" ng-class="{'error': candidate_errors.email}"  
+	           ng-if="candidate_errors.email">{{candidate_errors.email[0]}}</label>
+	    <input class="form-control" type="email" placeholder="" name="email" ng-model="candidate.email">
+	</p>
+	
+	<label class="control-label">Tel</label>
+	<p>
+		<label class="control-label" ng-class="{'error': candidate_errors.tel}"  
+	           ng-if="candidate_errors.tel">{{candidate_errors.tel[0]}}</label>
+	    <input class="form-control" type="text" placeholder="" name="tel" ng-model="candidate.tel">
+	</p>
+	
+	<p>
+	    <button class="btn btn-lg btn-primary glyphicon glyphicon-save" type="submit"></button>
+	</p>
+  </div>
+</form>
+
+

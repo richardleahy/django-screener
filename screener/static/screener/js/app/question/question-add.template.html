@@ -1,0 +1,48 @@
+<h3 class="page-header">Add Question</h3>
+
+<style>
+	textarea.form-control {
+	    resize: none;
+	    height:200px;
+	}
+</style>
+
+<div class="alert alert-{{status}}" role="alert">
+    <busy></busy> {{status|uppercase}}<span ng-if="info">:</span> {{info}}
+</div>
+
+<div ng-repeat="e in errors" class="alert alert-danger" role="alert">
+    ERROR: {{e.errorMsg}}
+    <br>STATUS: {{e.status}} - {{e.statusText}}
+    <br>DETAIL: {{e.data.detail}}
+</div>
+
+<form ng-submit="addItem()">
+	<div class="form-group">
+	    <label class="control-label error" ng-if="question_errors.non_field_errors"><p>{{question_errors.non_field_errors}}</p></label>
+	    <br ng-if="question_errors.non_field_errors">
+	    
+		<label class="control-label required">Question</label>
+		<p>
+			<label class="control-label" ng-class="{'error': question_errors.question}"  
+	               ng-if="question_errors.question">{{question_errors.question[0]}}</label>
+		    <input class="form-control" type="text" placeholder="" name="question" ng-model="question" required>
+		</p>
+		
+		<label class="control-label">Reference Answer</label>
+		<p><textarea class="form-control" placeholder="" name="reference_answer" ng-model="reference_answer"></textarea></p>
+	</div>
+	
+	<label>Category [Ctrl + Click]</label>
+	<p>
+	    <select multiple class="form-control" name="categories" ng-model="categories">
+	       <option ng-repeat="c in category_list" value="{{c.category}}">     
+	           {{c.category}}
+	       </option>
+	    </select>
+	</p>
+	
+	<p><button class="btn btn-lg btn-primary glyphicon glyphicon-save" type="submit"></button></p>
+</form>
+
+

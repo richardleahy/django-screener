@@ -1,0 +1,36 @@
+<modal-confirm-delete-dialog></modal-confirm-delete-dialog>
+
+<h3 class="page-header">Candidates ({{candidates.count}})</h3>
+
+<div ng-repeat="e in errors" class="alert alert-danger" role="alert">
+    ERROR: {{e.errorMsg}}
+    <br>STATUS: {{e.status}} - {{e.statusText}}
+    <br>DETAIL: {{e.data.detail}}
+</div>
+
+<p><button class="btn btn-lg btn-primary glyphicon glyphicon-plus" onclick="location.href='#!/candidates/add'"></button></p>
+<p><input class="form-control" type="text" placeholder="Filter" ng-model="filter"></p>
+
+<div class="table-responsive">
+   <table class="table table-striped">
+     <thead>
+       <tr>
+         <th class="col-sm-4">Candidate</th>
+         <th class="col-sm-1">Actions</th>
+         <th class="col-sm-4">Start / View Screen</th>
+         <th class="col-sm-1">Score %</th>
+         <th class="col-sm-2">Quality Breakdown %</th>
+       </tr>
+     </thead>
+     <tbody>
+       <tr ng-repeat="c in candidates | filter:filter |orderBy:'-score'">
+         <td><a href="#!/candidates/{{c.pk}}/" >{{c.first_name}} {{c.surname}}</a></td>
+         <td><button class="btn btn-xs btn-danger glyphicon glyphicon-remove" type="button" data-toggle="modal" data-target="#confirmDeleteModal" ng-click='confirmData($index, c.pk)' ></button></td>
+         <td><a href="#!/candidates/{{c.pk}}/screens/{{c.screen_pk}}" >{{c.screen_name}}</a></td>
+         <td>{{c.score}}</td>
+         <td>{{c.quality}}</td>
+       </tr>
+     </tbody>
+   </table>
+</div>
+

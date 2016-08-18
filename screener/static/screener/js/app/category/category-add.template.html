@@ -1,0 +1,28 @@
+<h3 class="page-header">Add Category</h3>
+
+<div class="alert alert-{{status}}" role="alert">
+    <busy></busy> {{status|uppercase}}<span ng-if="info">:</span> {{info}}
+</div>
+
+<div ng-repeat="e in errors" class="alert alert-danger" role="alert">
+    ERROR: {{e.errorMsg}}
+    <br>STATUS: {{e.status}} - {{e.statusText}}
+    <br>DETAIL: {{e.data.detail}}
+</div>
+
+<form ng-submit="addItem()">
+	<div class="form-group">
+	    <label class="control-label error" ng-if="category_errors.non_field_errors"><p>{{category_errors.non_field_errors}}</p></label>
+	    <br ng-if="category_errors.non_field_errors">
+		<label class="control-label required">Category</label>
+		
+		<p>
+		    <label class="control-label" ng-class="{'error': category_errors.category}"  
+	               ng-if="category_errors.category">{{category_errors.category[0]}}</label>
+		    <input class="form-control" type="text" placeholder="" name="category" ng-model="category" required>    
+		</p>
+	</div>
+	<p><button class="btn btn-lg btn-primary glyphicon glyphicon-save" type="submit"></button></p>
+</form>
+
+
