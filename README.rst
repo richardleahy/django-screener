@@ -14,7 +14,7 @@ Bootstrap
 PyPI download
 -------------
 django-screener
----------------
+
 
 Important Info
 --------------
