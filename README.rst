@@ -13,7 +13,7 @@ Bootstrap
 
 PyPI download
 -------------
-django-screener
+pip install django-screener
 
 
 Important Info
