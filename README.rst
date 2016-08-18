@@ -7,8 +7,8 @@ screen, users add questions and candidates.
 
 Requires
 --------
-Django REST framework
-AngularJS
+Django REST framework,
+AngularJS,
 Bootstrap
 
 PyPI download
