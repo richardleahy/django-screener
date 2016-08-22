@@ -13,7 +13,7 @@ setup(
     packages=find_packages(),
     include_package_data=True,
     license='BSD 3-Clause',
-    description='A simple Django app to manage phone screens.',
+    description='Phone screen management for interviewers',
     long_description=README,
     author='Richard Leahy',
     author_email='richard-james.leahy@hotmail.co.uk',
