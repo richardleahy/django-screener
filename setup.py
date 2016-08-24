@@ -9,7 +9,7 @@ os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
 setup(
     name='django-screener',
-    version='0.1.0b1',
+    version='0.1.1b1',
     packages=find_packages(),
     include_package_data=True,
     license='BSD 3-Clause',
