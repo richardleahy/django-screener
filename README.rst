@@ -46,6 +46,11 @@ Quick start
    
 5. Visit http://127.0.0.1:8000/screener/api/ to view the API. Need to add url(r'^api-auth/', include('rest_framework.urls')),
    to your root urls.py to be able to login if you do not already have login functionality.
+You can uncomment the url below in screener/urls.py to log in using the django rest framework:
+screener/urls.py:
+    # Remove comment to login into the API if you do not have any login functionality then navigate back to http://127.0.0.1:8000/screener/
+    # http://127.0.0.1:8000/screener/api/
+    #url(r'^api-auth/', include('rest_framework.urls')),
 
 6. Add some questions.
 
