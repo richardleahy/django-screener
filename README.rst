@@ -17,7 +17,14 @@ pip install django-screener
 
 Important Info
 --------------
-Requires a valid token. Your site must provide its own login functionality.
+Requires a valid token to access the API. Your site must provide its own login functionality.
+You can use the django-rest-auth package to handle token authentication for you.
+https://django-rest-auth.readthedocs.io/en/latest/installation.html
+
+If you want to browse the API in the browser, a valid session will be required. You can uncomment the default session login
+provided by the Django Rest Framework in the project root urls.py for this if you do not have session login 
+functionality. Documentation for this can be found below.
+http://www.django-rest-framework.org/tutorial/4-authentication-and-permissions/#adding-login-to-the-browsable-api
 
 This is just an API. Grab the client side code from this repo https://github.com/richardleahy/ng-screener
 

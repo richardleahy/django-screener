@@ -28,11 +28,6 @@ from screener.models import (Question,
 from screener.permissions import IsOwner
 
 
-@login_required
-def index(request, template_name):
-    return render(request, template_name)
-
-
 @api_view(['GET'])
 def api_root(request, format=None):
     return Response({

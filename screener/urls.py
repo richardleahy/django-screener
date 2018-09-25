@@ -12,7 +12,7 @@ router.register(r'answers', views.AnswerViewSet)
 router.register(r'answerquality', views.AnswerQualityViewSet)
 
 urlpatterns = [
-    url(r'^$', include(router.urls)),
+    url(r'^', include(router.urls)),
     # Remove comment to login into the API if you do not have any login functionality
     #url(r'^api-auth/', include('rest_framework.urls')),
 ]
